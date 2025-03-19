@@ -1,0 +1,23 @@
+CREATE DATABASE ParkingDB;
+USE ParkingDB;
+
+-- Table for parking spots
+CREATE TABLE ParkingSpots (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    location VARCHAR(255) NOT NULL,
+    is_available BOOLEAN DEFAULT TRUE
+);
+
+-- Table for bookings
+CREATE TABLE Bookings (
+    id VARCHAR(50) PRIMARY KEY, -- Using UUID
+    user_name VARCHAR(255) NOT NULL,
+    parking_spot_id INT,
+    FOREIGN KEY (parking_spot_id) REFERENCES ParkingSpots(id) ON DELETE CASCADE
+);
+
+-- Insert sample data
+INSERT INTO ParkingSpots (location, is_available) VALUES 
+('Main Street', TRUE),
+('Mall Parking', TRUE),
+('Airport Parking', TRUE);
