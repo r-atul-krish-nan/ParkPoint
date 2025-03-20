@@ -15,6 +15,6 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{id=" + bookingId + ", user='" + userName + "', spot=" + parkingSpot.getId() + ", location='" + parkingSpot.getLocation() + "'}";
+        return "Booking{id=" + bookingId + ", user='" + userName + "', spot=" + parkingSpot.getId() + ", location='" + parkingSpot.getLocation() + "'}\n";
     }
 }
