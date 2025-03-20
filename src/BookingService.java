@@ -7,7 +7,7 @@ public class BookingService {
     public Booking bookParkingSpot(int spotId, String userName, ParkingService parkingService) {
         ParkingSpot spot = parkingService.bookSpot(spotId);
         if (spot == null) {
-            return null; // Spot is already booked or doesn't exist
+            return null;
         }
 
         String bookingId = UUID.randomUUID().toString();
@@ -30,7 +30,7 @@ public class BookingService {
 
     public List<Booking> getBookings() {
         List<Booking> bookings = new ArrayList<>();
-        String query = "SELECT b.id, b.user_name, p.id AS spot_id, p.location FROM Bookings b " +
+        String query = "SELECT b.id, b.user_name, p.id AS spot_id, p.location, p.total_slots, p.available_slots FROM Bookings b " +
                        "JOIN ParkingSpots p ON b.parking_spot_id = p.id";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -38,7 +38,10 @@ public class BookingService {
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                ParkingSpot spot = new ParkingSpot(rs.getInt("spot_id"), rs.getString("location"));
+                ParkingSpot spot = new ParkingSpot(
+                    rs.getInt("spot_id"), rs.getString("location"),
+                    rs.getInt("total_slots"), rs.getInt("available_slots")
+                );
                 bookings.add(new Booking(rs.getString("id"), rs.getString("user_name"), spot));
             }
         } catch (SQLException e) {

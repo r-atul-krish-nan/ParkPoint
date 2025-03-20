@@ -20,14 +20,7 @@ public class ParkingApp {
             switch (choice) {
                 case 1:
                     List<ParkingSpot> availableSpots = parkingService.getAvailableSpots();
-                    if (availableSpots.isEmpty()) {
-                        System.out.println("No available spots.");
-                    } else {
-                        System.out.println("Available Parking Spots:");
-                        for (ParkingSpot spot : availableSpots) {
-                            System.out.println(spot);
-                        }
-                    }
+                    System.out.println(availableSpots.isEmpty() ? "No available spots." : availableSpots);
                     break;
 
                 case 2:
@@ -36,34 +29,18 @@ public class ParkingApp {
                     scanner.nextLine();
                     System.out.print("Enter your name: ");
                     String userName = scanner.nextLine();
-
                     Booking booking = bookingService.bookParkingSpot(spotId, userName, parkingService);
-                    if (booking != null) {
-                        System.out.println("Booking successful! " + booking);
-                    } else {
-                        System.out.println("Failed to book. Spot may be unavailable.");
-                    }
+                    System.out.println(booking != null ? "Booking successful! " + booking : "Failed to book.");
                     break;
 
                 case 3:
-                    List<Booking> bookings = bookingService.getBookings();
-                    if (bookings.isEmpty()) {
-                        System.out.println("No bookings found.");
-                    } else {
-                        System.out.println("Bookings:");
-                        for (Booking b : bookings) {
-                            System.out.println(b);
-                        }
-                    }
+                    System.out.println(bookingService.getBookings());
                     break;
 
                 case 4:
                     System.out.println("Exiting...");
                     scanner.close();
                     return;
-
-                default:
-                    System.out.println("Invalid choice. Try again.");
             }
         }
     }

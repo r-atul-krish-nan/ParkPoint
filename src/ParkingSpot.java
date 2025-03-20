@@ -1,24 +1,27 @@
 public class ParkingSpot {
     private int id;
     private String location;
-    private boolean isAvailable;
+    private int totalSlots;
+    private int availableSlots;
 
-    public ParkingSpot(int id, String location) {
+    public ParkingSpot(int id, String location, int totalSlots, int availableSlots) {
         this.id = id;
         this.location = location;
-        this.isAvailable = true; // Initially, all spots are available
+        this.totalSlots = totalSlots;
+        this.availableSlots = availableSlots;
     }
 
     public int getId() { return id; }
     public String getLocation() { return location; }
-    public boolean isAvailable() { return isAvailable; }
+    public int getTotalSlots() { return totalSlots; }
+    public int getAvailableSlots() { return availableSlots; }
 
-    public void setAvailable(boolean available) {
-        this.isAvailable = available;
+    public void setAvailableSlots(int availableSlots) {
+        this.availableSlots = availableSlots;
     }
 
     @Override
     public String toString() {
-        return "ParkingSpot{id=" + id + ", location='" + location + "', available=" + isAvailable + "}";
+        return "ParkingSpot{id=" + id + ", location='" + location + "', totalSlots=" + totalSlots + ", availableSlots=" + availableSlots + "}";
     }
 }
