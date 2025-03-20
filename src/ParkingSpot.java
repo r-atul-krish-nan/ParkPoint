@@ -22,6 +22,6 @@ public class ParkingSpot {
 
     @Override
     public String toString() {
-        return "ParkingSpot{id=" + id + ", location='" + location + ", availableSlots=" + availableSlots + "}\n";
+        return "\nParkingSpot{id=" + id + ", location='" + location + ", availableSlots=" + availableSlots + "}";
     }
 }
