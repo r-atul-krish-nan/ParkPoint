@@ -1,0 +1,21 @@
+CREATE DATABASE ParkingDB;
+USE ParkingDB;
+
+CREATE TABLE ParkingSpots (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    location VARCHAR(255) NOT NULL,
+    total_slots INT DEFAULT 50,
+    available_slots INT DEFAULT 50
+);
+
+CREATE TABLE Bookings (
+    id VARCHAR(36) PRIMARY KEY,
+    user_name VARCHAR(255) NOT NULL,
+    parking_spot_id INT,
+    FOREIGN KEY (parking_spot_id) REFERENCES ParkingSpots(id)
+);
+
+INSERT INTO ParkingSpots (location, total_slots, available_slots) VALUES
+('Mall', 50, 50),
+('Cinema', 50, 50),
+('Street', 50, 50);
